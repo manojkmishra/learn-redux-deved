@@ -1,14 +1,18 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {increment, decrement} from './actions';
 
-function App() {
-  const counter=useSelector(state=>state.counter);
+function App() 
+{ const counter=useSelector(state=>state.counter);
   const islogedin=useSelector(state=>state.isLogged);
+  const dispatch= useDispatch();
+
   return (
     <div className="App">
-<h1>Counter {counter}</h1>
-{islogedin ? <h2>loggedin</h2> : <h2>not loggedin</h2>}
-
+        <h1>Counter {counter}</h1>
+        <button onClick={()=>dispatch(increment())}>+</button>
+        <button onClick={()=>dispatch(decrement())}>-</button>
+        {islogedin ? <h2>loggedin</h2> : <h2>not loggedin</h2>}
     </div>
   );
 }
